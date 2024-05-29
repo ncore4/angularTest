@@ -1,0 +1,13 @@
+<H1>Books List</H1>
+<button (click)="previousPage()">Previous Page</button>
+<span> [ {{page}} ] </span>
+<button (click)="nextPage()">Next Page</button>
+<br/>
+<div class="list">
+  <div *ngFor="let Book of data">
+    {{Book.title}}
+  </div>
+  <div *ngIf="data.length ==0">
+    No records to show in page {{page}}
+  </div>
+</div>
