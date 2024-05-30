@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/services/books/books.service';
 
@@ -22,17 +23,10 @@ export class BooksComponent implements OnInit {
     this.loadData();
   }
 
+  data$: Observable<Book[]> | null = null;
+
   loadData() {
-    this.srv.getBooks(this.contentSize, this.page).subscribe(
-      {
-        next: books => {
-          this.data = books;
-        },
-        complete: () => {
-          //data loaded message
-        }
-      }
-    );
+    this.data$ = this.srv.getBooks(this.contentSize, this.page);
   }
 
   nextPage() {

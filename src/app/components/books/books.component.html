@@ -4,10 +4,10 @@
 <button (click)="nextPage()">Next Page</button>
 <br/>
 <div class="list">
-  <div *ngFor="let Book of data">
+  <div *ngFor="let Book of data$ | async">
     {{Book.title}}
   </div>
-  <div *ngIf="data.length ==0">
+  <div *ngIf="(data$ | async)?.length == 0 ">
     No records to show in page {{page}}
   </div>
 </div>
